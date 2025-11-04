@@ -13,6 +13,8 @@ class SuperMario:
         pygame.display.set_caption("Super Mario Bros")
         self.window = pygame.display.set_mode((640, 480))
 
+        self.diplay = pygame.Surface((320, 240))
+
         self.clock = pygame.time.Clock()
 
         self.movement = [False, False]
@@ -23,10 +25,10 @@ class SuperMario:
 
     def run(self):
         while True:
-            self.window.fill((136, 134, 255))
+            self.diplay.fill((136, 134, 255))
 
             self.player.update((self.movement[1] - self.movement[0], 0))
-            self.player.render(self.window)
+            self.player.render(self.diplay)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -47,6 +49,9 @@ class SuperMario:
             self.movement[0] = keys[pygame.K_LEFT]
             self.movement[1] = keys[pygame.K_RIGHT]
 
+            self.window.blit(
+                pygame.transform.scale(self.diplay, self.window.get_size()), (0, 0)
+            )
             pygame.display.update()
             self.clock.tick(60)
 

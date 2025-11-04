@@ -1,3 +1,6 @@
+from pygame import Surface
+
+
 class Player:
     def __init__(self, game, e_type: str, pos: list[int], size: tuple[int]) -> None:
         self.game = game
@@ -15,5 +18,5 @@ class Player:
         self.pos[0] += frame_movement[0]
         self.pos[1] += frame_movement[1]
 
-    def render(self, surface):
+    def render(self, surface: Surface):
         surface.blit(self.game.assets["player"], self.pos)
